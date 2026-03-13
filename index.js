@@ -24,6 +24,7 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+/*
 function playRound() {
   const humanChoice = getHumanChoice();
   const computerChoice = getComputerChoice();
@@ -53,6 +54,61 @@ function playRound() {
   } else if (humanChoice === "paper" && computerChoice === "scissors") {
     computerScore++;
     console.log("Scissors beats paper!  Computer wins!");
+  }
+}
+  */
+
+/*playRound() as a switch*/
+
+function playRound() {
+  const humanChoice = getHumanChoice();
+  const computerChoice = getComputerChoice();
+
+  console.log("Human choice: " + humanChoice);
+  console.log("Computer choice: " + computerChoice);
+
+  switch (true) {
+    case humanChoice === computerChoice:
+      humanScore++;
+      computerScore++;
+      console.log("Its a tie!");
+      break;
+
+    case humanChoice === "rock" && computerChoice === "scissors": {
+      humanScore++;
+      console.log("Rock beats scissors! Human wins!");
+      break;
+    }
+
+    case humanChoice === "scissors" && computerChoice === "rock": {
+      computerScore++;
+      console.log("Rock beats scissors! Computer wins!");
+      break;
+    }
+
+    case humanChoice === "paper" && computerChoice === "rock": {
+      humanScore++;
+      console.log("Paper beats rock! Human wins!");
+      break;
+    }
+
+    case humanChoice === "rock" && computerChoice === "paper": {
+      computerScore++;
+      console.log("Paper beats rock!  Computer wins!");
+      break;
+    }
+
+    case humanChoice === "scissors" && computerChoice === "paper": {
+      humanScore++;
+      console.log("Scissors beats paper!  Human wins!");
+      break;
+    }
+
+    case humanChoice === "paper" && computerChoice === "scissors": {
+      computerScore++;
+      console.log("Scissors beats paper!  Computer wins!");
+      break;
+    }
   }
 }
 
