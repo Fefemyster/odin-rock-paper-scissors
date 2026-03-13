@@ -15,17 +15,10 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  let userEntry = prompt();
-
-  return userEntry.toLowerCase();
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound() {
-  const humanChoice = getHumanChoice();
+function playRound(humanChoice) {
   const computerChoice = getComputerChoice();
 
   console.log("Human choice: " + humanChoice);
@@ -81,31 +74,34 @@ function scores() {
   console.log(`Computer score: ${computerScore}`);
 }
 
-function playGame() {
-  console.log("ROUND 1");
-  playRound();
-  scores();
-  console.log(" ");
+//NOTE: Always remember to reference the elements
+let btnRock = document.querySelector("#rock");
+let btnPaper = document.querySelector("#paper");
+let btnScissors = document.querySelector("#scissors");
 
-  console.log("ROUND 2");
-  playRound();
-  scores();
-  console.log(" ");
+/*
+1.Add an event listener to the buttons that call 
+your playRound function with the correct 
+playerSelection every time a button is clicked.
+*/
 
-  console.log("ROUND 3");
-  playRound();
-  scores();
-  console.log(" ");
+btnRock.addEventListener("click", (e) => {
+  playRound("rock");
+});
 
-  console.log("ROUND 4");
-  playRound();
-  scores();
-  console.log(" ");
+btnPaper.addEventListener("click", (e) => {
+  playRound("paper");
+});
 
-  console.log("ROUND 5");
-  playRound();
-  console.log(`Final Score Human: ${humanScore}`);
-  console.log(`Final Score Computer: ${computerScore}`);
-}
+btnScissors.addEventListener("click", (e) => {
+  playRound("scissors");
+});
 
-playGame();
+/*
+1. User select between 3 choices: rock, paper, scissors
+2. Get the option selected by the user.
+3. Assign each option to each button 
+4. Then we need to pass that option to the playRound function
+5. Option gets evaluated and compared to computer choice.
+
+*/
