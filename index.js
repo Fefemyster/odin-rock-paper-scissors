@@ -18,7 +18,23 @@ function getComputerChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+const div = document.createElement("div");
+const ul = document.createElement("ul");
+
+//1.Add a div
+
+//2.Add each result to the list without overwriting the previous one
+// Each element should create a new element for the list
+// The result of each round should be stored somewhere
+
 function playRound(humanChoice) {
+  const main = document.querySelector("main");
+  const listElement = document.createElement("li");
+
+  main.appendChild(div);
+  div.appendChild(ul);
+  ul.appendChild(listElement);
+
   const computerChoice = getComputerChoice();
 
   console.log("Human choice: " + humanChoice);
@@ -28,42 +44,83 @@ function playRound(humanChoice) {
     case humanChoice === computerChoice:
       humanScore++;
       computerScore++;
-      console.log("Its a tie!");
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Result: It's a tie!";
       break;
 
     case humanChoice === "rock" && computerChoice === "scissors": {
       humanScore++;
-      console.log("Rock beats scissors! Human wins!");
+
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Rock beats scissors! Human wins!";
       break;
     }
 
     case humanChoice === "scissors" && computerChoice === "rock": {
       computerScore++;
-      console.log("Rock beats scissors! Computer wins!");
+
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Rock beats scissors! Computer wins!";
       break;
     }
 
     case humanChoice === "paper" && computerChoice === "rock": {
       humanScore++;
       console.log("Paper beats rock! Human wins!");
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Paper beats rock! Human wins!";
       break;
     }
 
     case humanChoice === "rock" && computerChoice === "paper": {
       computerScore++;
-      console.log("Paper beats rock!  Computer wins!");
+
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Paper beats rock!  Computer wins!";
       break;
     }
 
     case humanChoice === "scissors" && computerChoice === "paper": {
       humanScore++;
-      console.log("Scissors beats paper!  Human wins!");
+
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Scissors beats paper!  Human wins!";
       break;
     }
 
     case humanChoice === "paper" && computerChoice === "scissors": {
       computerScore++;
-      console.log("Scissors beats paper!  Computer wins!");
+
+      listElement.textContent =
+        `User selection: ${humanChoice}` +
+        " " +
+        `Computer selection: ${computerChoice}` +
+        " " +
+        "Scissors beats paper!  Computer wins!";
       break;
     }
   }
