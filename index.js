@@ -21,11 +21,9 @@ let computerScore = 0;
 const div = document.createElement("div");
 const ul = document.createElement("ul");
 
-//1.Add a div
-
-//2.Add each result to the list without overwriting the previous one
-// Each element should create a new element for the list
-// The result of each round should be stored somewhere
+//Display the running score, and announce a winner of the game once one player reaches 5 points.
+//1. Display the running score
+//2. Choose a winner when either score gets to 5
 
 function playRound(humanChoice) {
   const main = document.querySelector("main");
@@ -37,9 +35,6 @@ function playRound(humanChoice) {
 
   const computerChoice = getComputerChoice();
 
-  console.log("Human choice: " + humanChoice);
-  console.log("Computer choice: " + computerChoice);
-
   switch (true) {
     case humanChoice === computerChoice:
       humanScore++;
@@ -49,7 +44,10 @@ function playRound(humanChoice) {
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Result: It's a tie!";
+        "Result: It's a tie!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
+
       break;
 
     case humanChoice === "rock" && computerChoice === "scissors": {
@@ -60,7 +58,10 @@ function playRound(humanChoice) {
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Rock beats scissors! Human wins!";
+        "Rock beats scissors! Human wins!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
+
       break;
     }
 
@@ -72,19 +73,22 @@ function playRound(humanChoice) {
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Rock beats scissors! Computer wins!";
+        "Rock beats scissors! Computer wins!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
       break;
     }
 
     case humanChoice === "paper" && computerChoice === "rock": {
       humanScore++;
-      console.log("Paper beats rock! Human wins!");
       listElement.textContent =
         `User selection: ${humanChoice}` +
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Paper beats rock! Human wins!";
+        "Paper beats rock! Human wins!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
       break;
     }
 
@@ -96,7 +100,9 @@ function playRound(humanChoice) {
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Paper beats rock!  Computer wins!";
+        "Paper beats rock!  Computer wins!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
       break;
     }
 
@@ -108,7 +114,9 @@ function playRound(humanChoice) {
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Scissors beats paper!  Human wins!";
+        "Scissors beats paper!  Human wins!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
       break;
     }
 
@@ -120,15 +128,40 @@ function playRound(humanChoice) {
         " " +
         `Computer selection: ${computerChoice}` +
         " " +
-        "Scissors beats paper!  Computer wins!";
+        "Scissors beats paper!  Computer wins!" +
+        " " +
+        `Current score - Human Score: ${humanScore} Computer Score: ${computerScore}`;
       break;
     }
   }
-}
 
-function scores() {
-  console.log(`Human score: ${humanScore}`);
-  console.log(`Computer score: ${computerScore}`);
+  if (humanScore >= 5) {
+    const div = document.createElement("div");
+    let p = document.createElement("p");
+    main.appendChild(div);
+    div.appendChild(p);
+    p.textContent = "Human Wins!!";
+    let resetButton = document.createElement("button");
+    p.appendChild(resetButton);
+    resetButton.textContent = "Reset";
+    btnRock.disable = true;
+
+    resetButton.addEventListener("click", (event) => {
+      window.location.reload();
+    });
+  } else if (computerScore >= 5) {
+    const div = document.createElement("div");
+    let p = document.createElement("p");
+    main.appendChild(div);
+    div.appendChild(p);
+    p.textContent = "Computer Wins!!";
+    let resetButton = document.createElement("button");
+    p.appendChild(resetButton);
+    resetButton.textContent = "Reset";
+    resetButton.addEventListener("click", (event) => {
+      window.location.reload();
+    });
+  }
 }
 
 //NOTE: Always remember to reference the elements
